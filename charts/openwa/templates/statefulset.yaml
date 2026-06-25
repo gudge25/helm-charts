@@ -25,6 +25,9 @@ spec:
 {{- if .Values.secret.create }}
         - secretRef:
             name: {{ include "openwa.fullname" . }}-secret
+{{- else if .Values.secret.existingSecret }}
+        - secretRef:
+            name: {{ .Values.secret.existingSecret }}
 {{- end }}
         env:
         - name: NODE_ID
@@ -35,7 +38,7 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
         - name: session-data
-          mountPath: /app/data/sessions
+          mountPath: {{ .Values.persistence.mountPath | quote }}
   volumeClaimTemplates:
   - metadata:
       name: session-data
