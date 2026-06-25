@@ -3,12 +3,22 @@ entries:
   openwa:
   - apiVersion: v2
     appVersion: 0.4.6
-    created: "2026-06-25T13:22:05.110019+02:00"
+    created: "2026-06-25T13:47:22.363336+02:00"
     description: OpenWA Helm Chart
-    digest: 4eaa830199791a80f87cffee40dfe73ae9aa11693b779e7afbacc52515657a84
+    digest: fb47cea1bc129e9d640cdd59d43e5f9ed510f395732c6c0216f10334fe71f0c8
+    name: openwa
+    type: application
+    urls:
+    - https://gudge25.github.io/helm-charts/openwa-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.4.6
+    created: "2026-06-25T13:47:22.363077+02:00"
+    description: OpenWA Helm Chart
+    digest: f7c31cbbdefe52aaa88484bb31322588ea6c1f492d53114127c5c3547f1483d7
     name: openwa
     type: application
     urls:
     - https://gudge25.github.io/helm-charts/openwa-0.1.0.tgz
     version: 0.1.0
-generated: "2026-06-25T13:22:05.109142+02:00"
+generated: "2026-06-25T13:47:22.362714+02:00"

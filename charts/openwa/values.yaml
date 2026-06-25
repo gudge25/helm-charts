@@ -19,7 +19,7 @@ config:
 secret:
   create: true
   existingSecret: ""
-  DATABASE_USER: openwa
+  DATABASE_USERNAME: openwa
   DATABASE_PASSWORD: your-secure-password
   ADMIN_API_KEY: your-admin-api-key
   WEBHOOK_SECRET: your-webhook-secret
