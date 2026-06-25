@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "openwa.fullname" . }}
+spec:
+  serviceName: {{ include "openwa.fullname" . }}-headless
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "openwa.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "openwa.name" . }}
+    spec:
+      containers:
+      - name: openwa
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.targetPort }}
+        envFrom:
+        - configMapRef:
+            name: {{ include "openwa.fullname" . }}-config
+{{- if .Values.secret.create }}
+        - secretRef:
+            name: {{ include "openwa.fullname" . }}-secret
+{{- end }}
+        env:
+        - name: NODE_ID
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        volumeMounts:
+        - name: session-data
+          mountPath: /app/data/sessions
+  volumeClaimTemplates:
+  - metadata:
+      name: session-data
+    spec:
+      accessModes: [{{ .Values.persistence.accessMode | quote }}]
+      resources:
+        requests:
+          storage: {{ .Values.persistence.size }}
+{{- if .Values.persistence.storageClass }}
+      storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}

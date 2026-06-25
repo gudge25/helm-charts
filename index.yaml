@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  openwa:
+  - apiVersion: v2
+    appVersion: 0.4.6
+    created: "2026-06-25T13:22:05.110019+02:00"
+    description: OpenWA Helm Chart
+    digest: 4eaa830199791a80f87cffee40dfe73ae9aa11693b779e7afbacc52515657a84
+    name: openwa
+    type: application
+    urls:
+    - https://gudge25.github.io/helm-charts/openwa-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-06-25T13:22:05.109142+02:00"

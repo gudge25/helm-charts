@@ -1,0 +1,50 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/rmyndharis/openwa
+  tag: "0.4.6"
+  pullPolicy: IfNotPresent
+
+config:
+  NODE_ENV: production
+  DATABASE_TYPE: postgres
+  DATABASE_HOST: postgres-service
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: openwa
+  REDIS_HOST: redis-service
+  REDIS_PORT: "6379"
+  ENABLE_QUEUE: "true"
+  PORT: "2785"
+
+secret:
+  create: true
+  existingSecret: ""
+  DATABASE_USER: openwa
+  DATABASE_PASSWORD: your-secure-password
+  ADMIN_API_KEY: your-admin-api-key
+  WEBHOOK_SECRET: your-webhook-secret
+
+service:
+  port: 80
+  targetPort: 2785
+
+ingress:
+  enabled: true
+  className: nginx
+  host: openwa.example.com
+  tls:
+    enabled: true
+    secretName: openwa-tls
+
+persistence:
+  accessMode: ReadWriteOnce
+  size: 10Gi
+  storageClass: ""
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 2Gi
